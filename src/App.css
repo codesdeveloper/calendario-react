@@ -1,0 +1,576 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  overflow: overlay;
+}
+
+body {
+  background-color: #eee;
+}
+
+.container {
+  background: #333;
+  max-width: 1200px;
+  width: 100%;
+  margin: 0 auto;
+  position: relative;
+}
+
+header {
+  width: 100%;
+  background-color: #0C0B0B;
+  height: 80px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  color: white;
+  text-align: center;
+}
+
+header .box-type {
+  margin-left: 20px;
+}
+
+.box-type h2 {
+  font-weight: normal;
+}
+
+.box-type select {
+  color: #0f0;
+  background: black;
+  padding: 4px 5px;
+  margin-top: 3px;
+  width: 100%;
+}
+
+.title h2 {
+  color: white;
+  font-size: 30px;
+}
+
+header .logo {
+  margin-right: 20px;
+  height: 80%;
+  background: white;
+}
+
+header .logo img {
+  height: 100%;
+}
+
+.alter {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 20px;
+  margin: 7px 0;
+}
+
+.alter span {
+  color: #0f0f;
+  border: 1px solid white;
+  padding: 3px;
+  font-weight: bold;
+  font-size: 25px;
+  cursor: pointer;
+  border-radius: 4px;
+}
+
+.alter span:hover {
+  background: #346363;
+}
+
+.alter select {
+  color: #0f0;
+  background: black;
+  padding: 4px 33px;
+  border-radius: 7px;
+  border: 1px solid white;
+  outline: none;
+  cursor: pointer;
+  z-index: 1;
+}
+
+.alter select:hover {
+  border: 1px solid cyan;
+}
+
+.alter select-selected {
+  background-color: cyan;
+}
+
+.alter .title-date {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.alter .title-year {
+  color: #0f0;
+  padding: 3.5px 9px;
+  border: 1px solid white;
+  border-right: none;
+  border-radius: 7px 0 0 7px;
+  margin-right: -5px;
+  background: black;
+}
+
+.alter .title-month {
+  color: #0f0;
+  padding: 3.5px 9px;
+  border: 1px solid white;
+  border-left: none;
+  border-radius: 0 7px 7px 0;
+  margin-left: -5px;
+  background: black;
+}
+
+.box-year {
+  grid-template-columns: auto auto auto;
+  grid-template-rows: auto auto auto auto;
+  gap: 8px;
+  display: none;
+}
+
+.box-year .box {
+  color: white;
+  width: 100%;
+  height: 250px;
+  border: 1px solid cyan;
+}
+
+.box-year .box h2 {
+  text-align: center;
+  border-bottom: 1px solid cyan;
+  cursor: pointer;
+}
+
+.box-year .box h2:hover {
+  background: #346363;
+}
+
+.box-year .box .box-content {
+  height: 100%;
+  display: grid;
+  grid-template-rows: repeat(7, 1fr);
+  grid-template-columns: repeat(7, 1fr);
+  padding: 10px 0;
+  align-items: center;
+}
+
+.box-year .box-title {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  padding: 0 3px;
+  color: #f00;
+  text-align: center;
+  border-bottom: 1px solid cyan;
+}
+
+.box-year .box .box-content .day {
+  text-align: center;
+  cursor: pointer;
+}
+
+.box-year .box .box-content .day:hover {
+  border: 1px solid cyan;
+  border-radius: 4px;
+}
+
+.box-day {
+  padding: 20px;
+  display: none;
+}
+
+.day-content {
+  display: flex;
+  justify-content: space-between;
+  border-bottom: 1px solid #888;
+  color: white;
+  font-size: 20px;
+  padding: 10px 0;
+}
+
+.day-hour {
+  border-right: 1px solid white;
+  border-left: 1px solid white;
+  padding: 0 5px;
+}
+
+.day-content .hour-content {
+  height: 20px;
+  cursor: pointer;
+  color: #0f0
+}
+
+.day-content .add {
+  padding: 5px;
+  width: 30px;
+  height: 30px;
+  color: red;
+  background: cyan;
+  cursor: pointer;
+}
+
+.hour-active {
+  background: rgb(108, 89, 89);
+}
+
+.box-tarefas {
+  padding: 20px;
+  display: none;
+}
+
+.add-tarefa {
+  width: 300px;
+  max-width: 400px;
+  display: flex;
+  margin: 0 auto;
+  justify-content: center;
+  align-items: center;
+  height: 30px;
+  cursor: pointer;
+  border-radius: 5px;
+  background: cyan;
+  color: red;
+  font-weight: bold;
+}
+
+.tarefa-content {
+  display: flex;
+  justify-content: space-between;
+  border-bottom: 1px solid #888;
+  color: white;
+  font-size: 20px;
+  padding: 10px 0;
+}
+
+.tarefa-date {
+  padding: 0 5px;
+  font-size: 17px;
+}
+
+.tarefa-item {
+  height: 20px;
+  cursor: pointer;
+  color: #0f0
+}
+
+.tarefa-content .edi,
+.tarefa-content .del {
+  padding: 5px;
+  width: 30px;
+  height: 30px;
+  color: red;
+  background: cyan;
+  cursor: pointer;
+}
+
+.tarefa-content .del {
+  background: red;
+  color: cyan;
+}
+
+.box-month {
+  display: none;
+}
+
+.month-week {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  padding: 10px 10px;
+  color: rgb(255, 0, 0);
+  text-align: center;
+  border-bottom: 1px solid cyan;
+}
+
+.month-content {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  grid-template-rows: repeat(5, 1fr);
+  padding: 10px;
+}
+
+.month-day {
+  display: flex;
+  flex-direction: column;
+  padding: 25px 10px;
+  margin: 5px;
+  border: 1px solid cyan;
+  align-items: center;
+}
+
+.month-day .day-num {
+  font-weight: bold;
+  color: white;
+  cursor: pointer;
+  border: 1px solid transparent;
+  border-radius: 5px;
+  padding: 5px;
+}
+
+.month-day .day-num:hover {
+  border: 1px solid cyan;
+}
+
+.month-day .day-taref {
+  color: #0f0;
+  cursor: pointer;
+  border: 1px solid transparent;
+  border-radius: 5px;
+  padding: 5px;
+}
+
+.month-day .day-taref:hover {
+  border: 1px solid cyan;
+}
+
+.box-week {
+  flex-direction: column;
+  display: none;
+}
+
+.week-container {
+  display: flex;
+}
+
+.week-list {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  padding: 10px 10px;
+  color: rgb(255, 0, 0);
+  text-align: center;
+  margin-left: 38px;
+}
+
+.week-list span {
+  cursor: pointer;
+}
+
+.week-list span:hover {
+  color: cyan;
+  font-weight: bold;
+}
+
+.box-week .week-hour span {
+  display: flex;
+  flex-direction: row;
+  border-bottom: 1px solid white;
+  padding: 20px 5px;
+  color: white;
+  margin-left: 10px;
+}
+
+.box-week .week-content {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  grid-template-rows: repeat(24, 1fr);
+  width: 100%;
+}
+
+.box-week .week-content span {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #0f0;
+  cursor: pointer;
+  text-align: center;
+  padding: 0 10px;
+  cursor: pointer;
+  margin: 5px;
+  border: 1px solid cyan;
+}
+
+.box-week .week-content span:hover {
+  background: #346363;
+}
+
+footer {
+  background: black;
+  color: white;
+  height: 60px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.animation {
+  background: #222;
+  background: rgba(34, 34, 34, 0.7);
+  width: 100%;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: absolute;
+  z-index: 2;
+}
+
+.animation .rotate {
+  width: 100px;
+  height: 100px;
+  position: relative;
+  border: 20px dotted cyan;
+  border-radius: 100px;
+  animation: rotate 2s infinite linear;
+}
+
+@keyframes rotate {
+  from {
+      transform: rotateZ(0);
+  }
+
+  to {
+      transform: rotateZ(380deg);
+  }
+}
+
+.modal-tarefas { 
+  background: rgba(44, 44, 44, 0.8);
+  color: white;
+  width: 100%;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: absolute;
+  top: 0;
+  display: none;
+  z-index: 2;
+}
+
+.modal-center {
+  background: #111;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  width: 40%;
+  justify-content: center;
+  align-items: center;
+  border-radius: 10px;
+  box-shadow: 0px 0px 10px white;
+}
+
+.modal-center h2 {
+  padding: 10px 0;
+  margin-bottom: 10px;
+  border-bottom: 1px solid white;
+  color: cyan;
+  width: 100%;
+  text-align: center;
+}
+
+.modal-center .close{
+ position: absolute;
+ border: 2px solid cyan;
+ border-radius: 0 10px 0 0;
+ color: red;
+ top: 0;
+ right: 0;
+ width: 20px;
+ height: 20px;
+ cursor: pointer;
+}
+
+.modal-center .close::after{
+  background: red;
+  display: block;
+  width: 100%;
+  height: 2px;
+  content: '';
+  transform: rotateZ(45deg);
+  position: absolute;
+  left: 0;
+  bottom: 50%;
+}
+
+.modal-center .close::before{
+  background: red;
+  display: block;
+  width: 100%;
+  height: 2px;
+  content: '';
+  transform: rotateZ(-45deg);
+  position: absolute;
+  left: 0;
+  bottom: 50%;
+}
+
+.modal-center label {
+  width: 80%;
+  color: cyan;
+}
+
+.modal-center input[type=text],
+.modal-center textarea {
+  width: 100%;
+  height: 30px;
+  border-radius: 10px;
+  display: block;
+  padding: 10px;
+  box-sizing: border-box;
+  font-size: 14px;
+  font-weight: bold;
+  margin-bottom: 15px;
+  margin-top: 5px;
+  outline: none;
+  border: 1px solid cyan;
+}
+
+.modal-center textarea {
+  resize: none;
+  border-radius: 5px;
+  height: 75px;
+}
+
+.modal-center input[type="date"],
+.modal-center input[type="time"]{
+  width: 40%;
+  height: 35px;
+  font-size: 17px;
+  text-align: center;
+  cursor: pointer;
+  border: 1px solid cyan;
+  border-radius: 10px;
+  padding: 10px;
+  outline: none;
+}
+
+.tarefa-footer{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  width: 80%;
+  margin-bottom: 20px;
+  margin-top: 5px;
+}
+
+.tarefa-footer label {
+  width: auto;
+}
+
+.tarefa-footer .modal-erro{
+  color: red;
+  text-align: right;
+}
+
+.modal-center input[type="date"]::-webkit-calendar-picker-indicator {
+  cursor: pointer;
+ }
+
+.modal-center button{
+  height: 35px;
+  font-size: 14px;
+  font-weight: bold;
+  border-radius: 10px;
+  padding: 5px 40px;
+  cursor: pointer;
+  border: 1px solid cyan;
+  width: 100%;
+  margin-top: 20px;
+}
