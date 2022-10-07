@@ -2,10 +2,10 @@ import logo from './logo.png'
 
 export function Header(props){
 
-
     function changer(){
         let value = document.getElementById('header-type').value;
         props.setType(value);
+        props.animation(true);
     }
 
     return(
@@ -13,11 +13,11 @@ export function Header(props){
                 <div className="box-type">
                     <h2>Tipo de data</h2>
                     <select onChange={changer} value={props.type} id="header-type" name="type">
-                        <option value="ano">Ano</option>
-                        <option value="mes">Mes</option>
-                        <option value="semana">Semana</option>
-                        <option value="dia">Dia</option>
-                        <option value="tarefas">Tarefas</option>
+                        <option value="year">Ano</option>
+                        <option value="month">Mes</option>
+                        <option value="week">Semana</option>
+                        <option value="day">Dia</option>
+                        <option value="task">Tarefas</option>
                     </select>
                 </div>
 

@@ -87,7 +87,7 @@ header .logo img {
 .alter select {
   color: #0f0;
   background: black;
-  padding: 4px 33px;
+  padding: 6px 33px;
   border-radius: 7px;
   border: 1px solid white;
   outline: none;
@@ -133,13 +133,12 @@ header .logo img {
   grid-template-columns: auto auto auto;
   grid-template-rows: auto auto auto auto;
   gap: 8px;
-  display: none;
+  display: grid;
 }
 
 .box-year .box {
   color: white;
   width: 100%;
-  height: 250px;
   border: 1px solid cyan;
 }
 
@@ -156,7 +155,7 @@ header .logo img {
 .box-year .box .box-content {
   height: 100%;
   display: grid;
-  grid-template-rows: repeat(7, 1fr);
+  grid-template-rows: repeat(8, 1fr);
   grid-template-columns: repeat(7, 1fr);
   padding: 10px 0;
   align-items: center;
@@ -172,18 +171,19 @@ header .logo img {
 }
 
 .box-year .box .box-content .day {
+  border: 1px solid transparent;
+  border-radius: 4px;
   text-align: center;
   cursor: pointer;
 }
 
 .box-year .box .box-content .day:hover {
   border: 1px solid cyan;
-  border-radius: 4px;
 }
 
 .box-day {
   padding: 20px;
-  display: none;
+  display: grid;
 }
 
 .day-content {
@@ -199,12 +199,26 @@ header .logo img {
   border-right: 1px solid white;
   border-left: 1px solid white;
   padding: 0 5px;
+  color: #f00;
 }
 
-.day-content .hour-content {
-  height: 20px;
+.day-content  .hour-not-taref{
+  padding: 3px;
+  color: #fff;
+  font-size: 17px;
+}
+
+.day-content .hour-is-taref {
+  border: 1px solid transparent;
+  border-radius: 5px;
+  padding: 3px;
   cursor: pointer;
-  color: #0f0
+  color: #0f0;
+  font-size: 17px;
+}
+
+.day-content .hour-is-taref:hover {
+  border: 1px solid cyan;
 }
 
 .day-content .add {
@@ -220,12 +234,12 @@ header .logo img {
   background: rgb(108, 89, 89);
 }
 
-.box-tarefas {
+.box-tasks {
   padding: 20px;
   display: none;
 }
 
-.add-tarefa {
+.add-task {
   width: 300px;
   max-width: 400px;
   display: flex;
@@ -240,7 +254,7 @@ header .logo img {
   font-weight: bold;
 }
 
-.tarefa-content {
+.task-content {
   display: flex;
   justify-content: space-between;
   border-bottom: 1px solid #888;
@@ -249,19 +263,19 @@ header .logo img {
   padding: 10px 0;
 }
 
-.tarefa-date {
+.task-date {
   padding: 0 5px;
   font-size: 17px;
 }
 
-.tarefa-item {
+.task-item {
   height: 20px;
   cursor: pointer;
   color: #0f0
 }
 
-.tarefa-content .edi,
-.tarefa-content .del {
+.task-content .edi,
+.task-content .del {
   padding: 5px;
   width: 30px;
   height: 30px;
@@ -270,13 +284,13 @@ header .logo img {
   cursor: pointer;
 }
 
-.tarefa-content .del {
+.task-content .del {
   background: red;
   color: cyan;
 }
 
 .box-month {
-  display: none;
+  display: grid;
 }
 
 .month-week {
@@ -323,15 +337,22 @@ header .logo img {
   border: 1px solid transparent;
   border-radius: 5px;
   padding: 5px;
+  text-align: center;
 }
 
 .month-day .day-taref:hover {
   border: 1px solid cyan;
 }
 
+.month-day .day-not-taref {
+  color: #fff;
+  padding: 5px;
+  text-align: center;
+}
+
 .box-week {
   flex-direction: column;
-  display: none;
+  display: grid;
 }
 
 .week-container {
@@ -429,7 +450,7 @@ footer {
   }
 }
 
-.modal-tarefas { 
+.modal-tasks { 
   background: rgba(44, 44, 44, 0.8);
   color: white;
   width: 100%;
@@ -540,7 +561,7 @@ footer {
   outline: none;
 }
 
-.tarefa-footer{
+.task-footer{
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -550,11 +571,11 @@ footer {
   margin-top: 5px;
 }
 
-.tarefa-footer label {
+.task-footer label {
   width: auto;
 }
 
-.tarefa-footer .modal-erro{
+.task-footer .modal-erro{
   color: red;
   text-align: right;
 }
