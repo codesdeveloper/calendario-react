@@ -1,3 +1,5 @@
+@import url("https://cdn.jsdelivr.net/npm/bootstrap-icons@1.9.1/font/bootstrap-icons.css");
+
 * {
   margin: 0;
   padding: 0;
@@ -35,16 +37,31 @@ header .box-type {
   margin-left: 20px;
 }
 
-.box-type h2 {
-  font-weight: normal;
-}
-
 .box-type select {
   color: #0f0;
   background: black;
   padding: 4px 5px;
   margin-top: 3px;
   width: 100%;
+  font-size: 18px;
+  text-align: center;
+  cursor: pointer;
+  border-radius: 5px;
+  outline: 0;
+  border: 2px solid #fff;
+}
+
+.box-type select:hover,
+.box-type select:focus{
+  border:2px solid cyan;
+}
+
+.box-type select option {
+  font-size: 14px;
+}
+
+.box-type select:focus option {
+  text-align: left;
 }
 
 .title h2 {
@@ -55,11 +72,12 @@ header .box-type {
 header .logo {
   margin-right: 20px;
   height: 80%;
-  background: white;
+  padding: 5px;
 }
 
 header .logo img {
   height: 100%;
+  background: white;
 }
 
 .alter {
@@ -71,8 +89,8 @@ header .logo img {
 }
 
 .alter span {
-  color: #0f0f;
-  border: 1px solid white;
+  color: #0f0;
+  border: 1px solid #0f0;
   padding: 3px;
   font-weight: bold;
   font-size: 25px;
@@ -82,6 +100,8 @@ header .logo img {
 
 .alter span:hover {
   background: #346363;
+  color: cyan;
+  border-color: cyan;
 }
 
 .alter select {
@@ -89,14 +109,14 @@ header .logo img {
   background: black;
   padding: 6px 33px;
   border-radius: 7px;
-  border: 1px solid white;
+  border: 2px solid white;
   outline: none;
   cursor: pointer;
   z-index: 1;
 }
 
 .alter select:hover {
-  border: 1px solid cyan;
+  border: 2px solid cyan;
 }
 
 .alter select-selected {
@@ -112,7 +132,7 @@ header .logo img {
 .alter .title-year {
   color: #0f0;
   padding: 3.5px 9px;
-  border: 1px solid white;
+  border: 2px solid white;
   border-right: none;
   border-radius: 7px 0 0 7px;
   margin-right: -5px;
@@ -122,7 +142,7 @@ header .logo img {
 .alter .title-month {
   color: #0f0;
   padding: 3.5px 9px;
-  border: 1px solid white;
+  border: 2px solid white;
   border-left: none;
   border-radius: 0 7px 7px 0;
   margin-left: -5px;
@@ -191,18 +211,15 @@ header .logo img {
   justify-content: space-between;
   border-bottom: 1px solid #888;
   color: white;
-  font-size: 20px;
-  padding: 10px 0;
+  padding: 5px 20px;
+  align-items: center;
 }
 
 .day-hour {
-  border-right: 1px solid white;
-  border-left: 1px solid white;
-  padding: 0 5px;
   color: #f00;
 }
 
-.day-content  .hour-not-taref{
+.day-content .hour-not-taref {
   padding: 3px;
   color: #fff;
   font-size: 17px;
@@ -211,82 +228,40 @@ header .logo img {
 .day-content .hour-is-taref {
   border: 1px solid transparent;
   border-radius: 5px;
-  padding: 3px;
+  padding: 3px 6px;
   cursor: pointer;
   color: #0f0;
   font-size: 17px;
+  display: block;
+  text-align: center;
+  width: 150px;
+  font-weight: 400;
 }
 
 .day-content .hour-is-taref:hover {
   border: 1px solid cyan;
+  background: #346363;
+  color: cyan;
 }
 
 .day-content .add {
-  padding: 5px;
-  width: 30px;
+  width: 60px;
   height: 30px;
-  color: red;
-  background: cyan;
+  color: cyan;
   cursor: pointer;
+  background: transparent;
+  border: 1px solid cyan;
+  font-size: 25px;
+}
+
+.day-content .add:hover {
+  background: #346363;
+  color: #0f0;
+  border: 1px solid #0f0;
 }
 
 .hour-active {
   background: rgb(108, 89, 89);
-}
-
-.box-tasks {
-  padding: 20px;
-  display: none;
-}
-
-.add-task {
-  width: 300px;
-  max-width: 400px;
-  display: flex;
-  margin: 0 auto;
-  justify-content: center;
-  align-items: center;
-  height: 30px;
-  cursor: pointer;
-  border-radius: 5px;
-  background: cyan;
-  color: red;
-  font-weight: bold;
-}
-
-.task-content {
-  display: flex;
-  justify-content: space-between;
-  border-bottom: 1px solid #888;
-  color: white;
-  font-size: 20px;
-  padding: 10px 0;
-}
-
-.task-date {
-  padding: 0 5px;
-  font-size: 17px;
-}
-
-.task-item {
-  height: 20px;
-  cursor: pointer;
-  color: #0f0
-}
-
-.task-content .edi,
-.task-content .del {
-  padding: 5px;
-  width: 30px;
-  height: 30px;
-  color: red;
-  background: cyan;
-  cursor: pointer;
-}
-
-.task-content .del {
-  background: red;
-  color: cyan;
 }
 
 .box-month {
@@ -318,30 +293,26 @@ header .logo img {
   align-items: center;
 }
 
+.month-day.is {
+  cursor: pointer;
+}
+
+.month-day.is:hover {
+  background: #020;
+}
+
 .month-day .day-num {
   font-weight: bold;
   color: white;
-  cursor: pointer;
-  border: 1px solid transparent;
   border-radius: 5px;
   padding: 5px;
-}
-
-.month-day .day-num:hover {
-  border: 1px solid cyan;
 }
 
 .month-day .day-taref {
   color: #0f0;
-  cursor: pointer;
-  border: 1px solid transparent;
   border-radius: 5px;
   padding: 5px;
   text-align: center;
-}
-
-.month-day .day-taref:hover {
-  border: 1px solid cyan;
 }
 
 .month-day .day-not-taref {
@@ -362,27 +333,39 @@ header .logo img {
 .week-list {
   display: grid;
   grid-template-columns: repeat(7, 1fr);
-  padding: 10px 10px;
-  color: rgb(255, 0, 0);
+  padding: 5px 5px 5px 60px;
+  color: #0f0;
   text-align: center;
-  margin-left: 38px;
+  background: #000;
+}
+
+.week-list.fixe {
+  position: fixed;
+  top: 0;
+  max-width: 1200px;
+  width: 100%;
+  z-index: 1;
+  border-bottom: 1px solid #fff;
 }
 
 .week-list span {
   cursor: pointer;
+  border-left: 1px solid;
+  border-right: 1px solid;
 }
 
 .week-list span:hover {
   color: cyan;
+  background: #346363;
   font-weight: bold;
 }
 
 .box-week .week-hour span {
   display: flex;
   flex-direction: row;
-  border-bottom: 1px solid white;
+  border-top: 1px solid white;
   padding: 20px 5px;
-  color: white;
+  color: #f00;
   margin-left: 10px;
 }
 
@@ -393,7 +376,7 @@ header .logo img {
   width: 100%;
 }
 
-.box-week .week-content span {
+.box-week .week-content>span {
   display: flex;
   align-items: center;
   justify-content: center;
@@ -404,10 +387,32 @@ header .logo img {
   cursor: pointer;
   margin: 5px;
   border: 1px solid cyan;
+  position: relative;
 }
 
-.box-week .week-content span:hover {
+.box-week .week-content>span .not {
+  color: #fff;
+}
+
+.box-week .week-content span:hover,
+.box-week .week-content span:hover .not {
   background: #346363;
+  color: transparent;
+}
+
+.box-week .week-content>span .add {
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  display: none;
+  justify-content: center;
+  align-items: center;
+  font-size: 20px;
+  color: #0f0;
+}
+
+.box-week .week-content span:hover .add {
+  display: flex;
 }
 
 footer {
@@ -442,156 +447,322 @@ footer {
 
 @keyframes rotate {
   from {
-      transform: rotateZ(0);
+    transform: rotateZ(0);
   }
 
   to {
-      transform: rotateZ(380deg);
+    transform: rotateZ(380deg);
   }
 }
 
-.modal-tasks { 
-  background: rgba(44, 44, 44, 0.8);
+.box-tasks {
+  padding: 20px;
+}
+
+.task-search {
+  width: 100%;
+  display: flex;
+  justify-content: space-evenly;
+  margin-bottom: 20px;
+}
+
+.task-search select {
+  width: 20%;
+  border-radius: 10px;
+  background: #000;
+  color: #0f0;
+  cursor: pointer;
+  text-align: center;
+  border: 2px solid #fff;
+  outline: 0;
+}
+
+.task-search select:focus {
+  text-align: left;
+}
+
+.task-search select:hover,
+.task-search select:focus {
+  color: cyan;
+  border: 2px solid cyan
+}
+
+.task-search select option {
+  color: #fff;
+}
+
+.task-search input {
+  background: #000;
+  color: #fff;
+  border-radius: 10px;
+  width: 40%;
+  padding: 10px 15px;
+  border: 2px solid white;
+  outline: none;
+
+}
+
+.task-search input:hover,
+.task-search input:focus {
+  border: 2px solid cyan;
+}
+
+.task-search input:hover::placeholder,
+.task-search input:focus::placeholder {
+  color: cyan;
+}
+
+.task-search input::placeholder {
+  text-align: center;
+  color: #0f0;
+}
+
+.task-search button {
+  width: 20%;
+  background: #000;
+  color: #0f0;
+  cursor: pointer;
+  border-radius: 10px;
+  border: 2px solid white;
+  outline: none;
+}
+
+.task-search button:hover {
+  border: 2px solid cyan;
+  color: cyan;
+}
+
+.task-month {
+  background: #000;
+  margin-bottom: 20px;
+  border-radius: 10px;
+  box-shadow: 0 0 3px cyan;
+  padding: 7px 18px;
+}
+
+.task-month-title {
+  color: #0f0;
+  display: block;
+  font-size: 14px;
+  margin-bottom: 20px;
+}
+
+.task-month .task {
   color: white;
+  display: flex;
+  border-top: 1px solid cyan;
+  padding: 10px 0;
+  justify-content: space-between;
+}
+
+.task-left {
+  display: flex;
+}
+
+.task-date {
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+  margin-right: 20px;
+}
+
+.task-day {
+  font-weight: bold;
+  font-size: 20px;
+  margin-bottom: 2px;
+}
+
+.task-hour {
+  font-size: 10px;
+  color: #bbb;
+}
+
+.task-content {
+  display: flex;
+  flex-direction: column;
+}
+
+.task-name {
+  font-weight: bold;
+  font-size: 20px;
+  margin-bottom: 2px;
+}
+
+.task-description {
+  font-size: 12px;
+  color: #bbb;
+}
+
+.task-actions .edit,
+.task-actions .remove {
+  margin-left: 20px;
+  cursor: pointer;
+}
+
+.task-actions i {
+  font-size: 30px;
+  color: cyan;
+}
+
+.task-actions .edit i:hover {
+  color: #0f0;
+}
+
+.task-actions .remove i:hover {
+  color: #f00;
+}
+
+.modal{
+  position: fixed;
+  top: 0;
+  left: 0;
   width: 100%;
   height: 100vh;
   display: flex;
   justify-content: center;
   align-items: center;
-  position: absolute;
-  top: 0;
-  display: none;
+  z-index: 3;
+}
+
+.modal-container{
+  background: rgba(44, 44, 44, 0.8);
   z-index: 2;
+  width: 100%;
+  height: 100%;
+  position: absolute;
 }
 
-.modal-center {
-  background: #111;
+.modal-content{
+  color:#fff;
+  z-index: 3;
+  background: #000;
+  border-radius: 10px;
+  box-shadow: 0 0 5px #fff;
+  padding: 10px;
+  width: 400px;
   position: relative;
-  display: flex;
-  flex-direction: column;
-  width: 40%;
-  justify-content: center;
-  align-items: center;
-  border-radius: 10px;
-  box-shadow: 0px 0px 10px white;
 }
 
-.modal-center h2 {
-  padding: 10px 0;
+.modal-title{
+  font-weight: bold;
+  font-size: 25px;
+  color: #fff;
+  border-bottom: 2px solid cyan;
+  text-align: center;
+  display: block;
+  padding-bottom: 5px;
   margin-bottom: 10px;
-  border-bottom: 1px solid white;
-  color: cyan;
-  width: 100%;
-  text-align: center;
 }
 
-.modal-center .close{
- position: absolute;
- border: 2px solid cyan;
- border-radius: 0 10px 0 0;
- color: red;
- top: 0;
- right: 0;
- width: 20px;
- height: 20px;
- cursor: pointer;
-}
-
-.modal-center .close::after{
-  background: red;
-  display: block;
-  width: 100%;
-  height: 2px;
-  content: '';
-  transform: rotateZ(45deg);
+.modal-close{
   position: absolute;
-  left: 0;
-  bottom: 50%;
-}
-
-.modal-center .close::before{
-  background: red;
-  display: block;
-  width: 100%;
-  height: 2px;
-  content: '';
-  transform: rotateZ(-45deg);
-  position: absolute;
-  left: 0;
-  bottom: 50%;
-}
-
-.modal-center label {
-  width: 80%;
-  color: cyan;
-}
-
-.modal-center input[type=text],
-.modal-center textarea {
-  width: 100%;
-  height: 30px;
-  border-radius: 10px;
-  display: block;
-  padding: 10px;
-  box-sizing: border-box;
-  font-size: 14px;
-  font-weight: bold;
-  margin-bottom: 15px;
-  margin-top: 5px;
-  outline: none;
-  border: 1px solid cyan;
-}
-
-.modal-center textarea {
-  resize: none;
-  border-radius: 5px;
-  height: 75px;
-}
-
-.modal-center input[type="date"],
-.modal-center input[type="time"]{
-  width: 40%;
-  height: 35px;
-  font-size: 17px;
-  text-align: center;
+  right: -3px;
+  top: -8px;
   cursor: pointer;
-  border: 1px solid cyan;
-  border-radius: 10px;
-  padding: 10px;
-  outline: none;
 }
 
-.task-footer{
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  flex-wrap: wrap;
-  width: 80%;
-  margin-bottom: 20px;
-  margin-top: 5px;
-}
-
-.task-footer label {
-  width: auto;
-}
-
-.task-footer .modal-erro{
+.modal-close:hover{
   color: red;
-  text-align: right;
 }
 
-.modal-center input[type="date"]::-webkit-calendar-picker-indicator {
-  cursor: pointer;
- }
+.modal-close i{
+  font-size: 25px;
+}
 
-.modal-center button{
-  height: 35px;
-  font-size: 14px;
-  font-weight: bold;
-  border-radius: 10px;
-  padding: 5px 40px;
-  cursor: pointer;
-  border: 1px solid cyan;
+.modal-content label{
+  font-size: 19px;
+}
+
+.modal-content input[type=text],
+.modal-content textarea{
+  display: block;
   width: 100%;
-  margin-top: 20px;
+  padding: 7px;
+  border-radius: 5px;
+  outline: 0;
+  border: 2px solid #0f0;
+  margin-top: 5px;
+  font-size: 15px;
+  font-weight: bold;
+  background: #f8f8ff;
+  margin-bottom: 10px;
+}
+
+.modal-content input[type=text]::placeholder,
+.modal-content textarea::placeholder{
+  color: #3f3f3f;
+}
+
+.modal-content textarea{
+  resize: none;
+  height: 95px;
+}
+
+.modal-infos{
+  display: flex;
+  justify-content: space-around;
+  margin-bottom: 10px;
+}
+
+.modal-erro{
+  color: #f00;
+  font-style: italic;
+  padding: 2px;
+}
+
+.modal-date{
+  display: flex;
+  justify-content: space-around;
+}
+
+.modal-content input[type=date],
+.modal-content input[type=time],
+.modal-content button{
+  width: 45%;
+  padding: 5px;
+  border-radius: 5px;
+  outline: 0;
+  border: 2px solid #0f0;
+  font-size: 15px;
+  font-weight: bold;
+  background: #f8f8ff;
+  text-align: center;  
+  cursor: pointer;
+  color: #3f3f3f;
+}
+
+.modal-content button{
+  margin:15px 2% 0 2%;
+  width: 96%;
+}
+
+.modal-content input:hover,
+.modal-content textarea:hover,
+.modal-content button:hover{
+  border: 2px solid cyan;
+  color: cyan;
+}
+
+.modal-content textarea:hover::placeholder,
+.modal-content input:hover::placeholder{
+  color: cyan;
+}
+
+.modal-name{
+  font-weight: bold;
+  display: block;
+  font-size: 20px;
+  margin-bottom: 10px;
+}
+
+.modal-desc{
+  display: block;
+  padding: 0 15px;
+  font-style: italic;
+  margin-bottom: 10px;
+}
+
+button.btn-remove{
+  width: 46%;
+  border: 2px solid cyan;
 }

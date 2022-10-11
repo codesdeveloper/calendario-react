@@ -3,84 +3,58 @@ import './App.css';
 import { Header } from './Header';
 import { Year } from './Year';
 import { Month } from './Month';
-import {Day} from './Day';
-import {Week} from './Week';
+import { Day } from './Day';
+import { Week } from './Week';
 import { Subheader } from './Subheader';
+import { Task } from './Task';
 
 export const months = ['Janeiro', 'Fevereiro', 'Março', 'Abril', 'Maio', 'Junho', 'Julho', 'Agosto', 'Setembro', 'Outubro', 'Novembro', 'Dezembro'];
 export const week_names = ['dom', 'seg', 'ter', 'qua', 'qui', 'sex', 'sab'];
-export const list_tasks = [
-  {
-      name: 'Corta o cabelo',
-      description: 'Salão de seu Zé',
-      day: 7,
-      month: 0,
-      year: 2022,
-      hours: 13
-  },
-  {
-      name: 'Viajar para o sul',
-      description: 'Passeia com a família fim de ano',
-      day: 20,
-      month: 11,
-      year: 2020,
-      hours: 3
-  },
-  {
-      name: 'Cortar grama',
-      description: 'Usar maquina nova para o serviço',
-      day: 8,
-      month: 0,
-      year: 2022,
-      hours: 3
-  },
-  {
-      name: 'Fazer um curso',
-      description: 'Na area que mais gosto',
-      day: 14,
-      month: 1,
-      year: 2022,
-      hours: 15
-  },
-  {
-      name: 'Entrar na academia',
-      description: 'Mudança de vida',
-      day: 3,
-      month: 6,
-      year: 2013,
-      hours: 15,  
-  }
-];
+
+const data = JSON.parse(window.localStorage.getItem('list_tasks'));
+export let list_tasks = (data != null) ? data : [];
+
+
+export function remove_task(i){
+  list_tasks = list_tasks.slice(i, 1);
+}
+
+export function tasks_change(){
+  window.localStorage.setItem('list_tasks', JSON.stringify(list_tasks));
+  list_tasks.sort((a, b) => {
+    if(a.year > b.year) return -1;
+    else if(b.year > a.year) return 1;
+    else if(a.month > b.month) return - 1;
+    else if(b.month > a.month) return 1;
+    else if(a.day > b.day)return -1;
+    else if(b.day > b.day)return 1;
+    else if(a.hour > b.hour) return -1
+    else return 1;
+});
+}
 
 
 function App() {
 
-  const [type, setType] = useState('year')
+  tasks_change();
+
+  const [type, setType] = useState('task');
   const [anim, setAnim] = useState(false);
-  const [current, setCurrent] = useState({
-    year: 2022,
-    month: 9,
-    day: 7,
-    hour: 7,
-    week: 0
-  });
+  const [current, setCurrent] = useState(new Date());
 
   useEffect(() => {
     if (anim) {
+      document.documentElement.style.overflow = 'hidden';
       setTimeout(() => {
+        document.documentElement.style.overflow = 'overlay';
         setAnim(false);
       }, 400);
     }
 
-    //gerar numero da semana
-    var currentdate = new Date(current.year, current.month, current.day - 1);
-    var oneJan = new Date(currentdate.getFullYear(), 0, 1);
-    var numberOfDays = Math.floor((currentdate - oneJan) / (24 * 60 * 60 * 1000));
-    current.week = Math.ceil((numberOfDays) / 7);
   });
 
   return (
-    <div className="App">  
+    <div className="App">
       <div className="container">
 
         {
@@ -90,22 +64,26 @@ function App() {
         }
 
         <div className='content'>
-          <Header type={type} setType={setType} animation={setAnim}/>
-          <Subheader type={type} animation={setAnim} current={current} setCurrent={setCurrent}/>
-          <hr/>
+          <Header type={type} setType={setType} animation={setAnim} />
+
+          {(type != 'task') ? <Subheader type={type} animation={setAnim} current={current} setCurrent={setCurrent} /> : ''}
+
+          <hr />
           <section>
             {
               (type == 'year') ? <Year animation={setAnim} setType={setType} current={current} setCurrent={setCurrent} /> :
-              (type == 'month') ? <Month animation={setAnim} setType={setType} current={current} setCurrent={setCurrent} /> :
-              (type == 'day') ? <Day current={current}/>:
-              (type == 'week') ? <Week current={current}/>:
-              ''
+                (type == 'month') ? <Month animation={setAnim} setType={setType} current={current} setCurrent={setCurrent} /> :
+                  (type == 'day') ? <Day animation={setAnim} current={current} /> :
+                    (type == 'week') ? <Week animation={setAnim} setType={setType} current={current} /> :
+                      (type == 'task') ? <Task animation={setAnim}/> : ''
             }
           </section>
           <footer>
-                <span>&#169; 2022 - Todos os direitos reservados</span>
-            </footer>
+            <span>&#169; 2022 - Todos os direitos reservados</span>
+          </footer>
         </div>
+
+        
 
       </div>
     </div>

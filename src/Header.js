@@ -8,10 +8,11 @@ export function Header(props){
         props.animation(true);
     }
 
+    document.activeElement.blur();
+
     return(
          <header>
                 <div className="box-type">
-                    <h2>Tipo de data</h2>
                     <select onChange={changer} value={props.type} id="header-type" name="type">
                         <option value="year">Ano</option>
                         <option value="month">Mes</option>

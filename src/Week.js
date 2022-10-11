@@ -1,92 +1,110 @@
-
+import { useState } from "react";
+import {list_tasks, tasks_change } from "./App";
+import { Modal } from "./Modal";
 
 export function Week(props) {
 
-    //gerar dias da semana
-    const week_days = [];
+    let [isModal, setIsmodal] = useState(false);
+    let [title, setTitle] = useState('');
+    let [modalData, setModalData] = useState(null);
 
+    let current = props.current;
 
-    let dayStart = new Date(props.current.year, props.current.month, props.current.day).getDay();
-    let dayCount = new Date(props.current.year, props.current.month + 1, 0).getDate();
+    //gerar numero da semana
+    var currentdate = new Date(current.getFullYear(), current.getMonth(), current.getDate() - 1);
+    var oneJan = new Date(currentdate.getFullYear(), 0, 1);
+    var numberOfDays = Math.floor((currentdate - oneJan) / (24 * 60 * 60 * 1000));
+    let week_ind = Math.ceil((numberOfDays) / 7) - 1;
+    let week_days = [];
+    let coutHours = [];
+    let coutTask = [];
 
-     //adicionando espacos vazios
-     for (let i = -dayStart; i <= 0; ++i)
-        week_days.push(<span>{props.current.day + i}</span>);
+    var start = null;
+    for (var i = 1; i <= 7; ++i) {
+        var date = new Date(2022, 0, i);
+        if (date.getDay() == 0) {
+            start = date;
+            break;
+        }
+    };
 
-     //adicionando dias do mes
-     for (let i = 1; i < 7 - dayStart; ++i){
-        var ii = props.current.day + i;
-        if(ii > dayCount){
-            week_days.push(<span>0{ii - dayCount}</span>);
-        }else week_days.push(<span>{ii < 10 ? '0' : ''}{ii}</span>);
-     }
+    for (var j = 0; j < 52; ++j) {
+        var ind_week = [];
+        for (var k = 0; k < 7; ++k) {
+            ind_week.push({
+                day: start.getDate(),
+                month: start.getMonth()
+            })
 
+            start.setDate(start.getDate() + 1);
+        }
+        week_days.push(ind_week);
+    }
 
+    for (var i = 0; i < 24; ++i) {
+        coutHours.push(<span>{((i < 10) ? '0' : '') + i + ':00'}</span>);
+        week_days[week_ind].map((val) => {
+            let c = 0;
 
+            list_tasks.map((e) => {
+                if(e.year == current.getFullYear() && e.month == val.month && e.day == val.day && e.hour == i)c += 1;
+            });
 
+            coutTask.push(<span>
+                {(c == 0) ? <span className="not">-</span>:
+                 (c == 1) ? '01 tarefa' : 
+                 (c < 10) ? ('0' + c + ' tarefas') : (c + ' tarefas')}
+                <span onClick={e => {add(val, i)}} className="add">+</span>
+            </span>);
+        })
+    }
 
-   /* for(var i = 0;i < 7; ++i){
-        var ind = props.current.week * 7;
-        week_days.push(<span>{ind}</span>);
-    }*/
+    function day_click(val) {
+        current.setDate(val.day);
+        current.setMonth(val.month);
+        props.setType('day');
+        props.animation(true);
+    }
 
-    
+    function add(val, i){
+        setIsmodal(true);
+        setTitle('Nova Tarefa');
+        //val.hour = i;
+        //setModalData(val);
+    }
 
-    var tt = new Date(props.current.year, props.current.month, props.current.day - 1);
+    function sucess(data){
+        list_tasks.push(data);
+        tasks_change();
+    }
 
-
-
-    console.clear();
-    //console.log(currentdate, result);
-
+    document.addEventListener('scroll', (e) => {
+        let list = document.querySelector('.week-list');
+        if(list == null) return;
+        else if (window.scrollY > 155) list.classList.add('fixe');
+        else list.classList.remove('fixe');
+    })
 
     return (
 
-
-
         <div className="box-week">
-            <div className="week-list">
-                {week_days}
-            </div>
+            <div className="week-list">{
+                week_days[week_ind].map(((val) => {
+                    return (<span onClick={e => day_click(val)}>{((val.day < 10) ? '0' : '') + val.day}</span>)
+                }))
+            }</div>
+
             <div className="week-container">
                 <div className="week-hour">
-                    {/*24 dias*/}
+                    {coutHours}
                 </div>
                 <div className="week-content">
-                    {/* 168 dias*/}
-
+                    {coutTask}
                 </div>
             </div>
 
-
-
-            {/*
-        //para teste de implementoção
-    let sem = [28, 29, 30, 1, 2, 3, 4];
-    let semId = 25;
-
-    let opts = ``;
-    for (var i = -10; i <= 10; ++i)
-        opts += `<option value="${i}" ${(i == 0) ? 'selected' : ''}>sem. ${semId + i}</option>`;
-    $('.alter #select').html(opts)
-
-    let week = $('.box-week');
-    week.css('display', 'flex')
-    let txt_list = '<div class="week-list">';
-
-    for (var i = 0; i < 7; ++i) txt_list += `<span>${(sem[i] < 10) ? ('0' + sem[i]) : sem[i]}</span>`;
-
-    txt_list += '</div><div class="week-container"><div class="week-hour">';
-    for (var i = 0; i < 24; ++i)txt_list += '<span>' + (i < 10 ? ("0" + i) : i) + '</span>';
-    
-    txt_list += '</div><div class="week-content">';
-    for (var i = 0; i < 168; ++i)txt_list += '<span>não ha tarefas</span>';
-
-
-    txt_list += '</div></div>';
-    week.html(txt_list);
-    */}
-
+            {(isModal) ? <Modal animation={props.animation} data={modalData} sucess={sucess} title={title} open={setIsmodal}/> : ''}
+            {(document.documentElement.style.overflow = (isModal) ?  'hidden' : 'overlay') ? '' : ''}
 
         </div>
     )

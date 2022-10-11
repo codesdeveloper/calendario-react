@@ -1,17 +1,41 @@
-import { list_tasks } from "./App";
+import { list_tasks, tasks_change } from "./App";
+import { Modal } from "./Modal";
+import { useState } from "react";
 
 export function Day(props) {
 
+    let [isModal, setIsmodal] = useState(false);
+    let [title, setTitle] = useState('');
+    let [modalData, setModalData] = useState(null);
+
+    let current = props.current;
+
     let hours = [];
-    while(hours.length < 24)hours.push([]);
+    while (hours.length < 24) hours.push([]);
 
     list_tasks.map((val) => {
-        if (val.year == props.current.year && val.month == props.current.month && val.day == props.current.day){ 
-            hours[val.hours].push(val);
+        if (val.year == current.getFullYear() && val.month == current.getMonth() && val.day == current.getDate()) {
+            hours[val.hour].push(val);
             return val;
         }
     })
 
+    function add() {
+        setIsmodal(true);
+        setTitle('Nova Tarefa');
+        setModalData(null);
+    }
+
+    function sucess(data) {
+        list_tasks.push(data);
+        tasks_change();
+    }
+
+    function show() {
+        setIsmodal(true);
+        setTitle('Nova Tarefa');
+        setModalData(null);
+    }
 
     return (
 
@@ -24,8 +48,8 @@ export function Day(props) {
                         <span className="hour-content">
 
                             {
-                                (val.length == 0) ? <span className="hour-not-taref">não há tarefas</span>
-                                    : <span className="hour-is-taref">
+                                (val.length == 0) ? <span className="hour-not-taref">-</span>
+                                    : <span onClick={e => show(ind)} className="hour-is-taref">
                                         {((val.length < 10 ? '0' : '') + val.length + ' ')}
                                         tarefa{val.length > 1 ? 's' : ''}
                                     </span>
@@ -33,12 +57,15 @@ export function Day(props) {
 
 
                         </span>
-                        <button className="add">+</button>
+                        <button onClick={e => add()} className="add">+</button>
                     </div>
                 )
 
             })}
 
+
+            {(isModal) ? <Modal data={modalData} sucess={sucess} title={title} open={setIsmodal} /> : ''}
+            {(document.documentElement.style.overflow = (isModal) ? 'hidden' : 'overlay') ? '' : ''}
         </div>
 
 

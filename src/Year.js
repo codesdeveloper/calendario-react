@@ -2,11 +2,13 @@ import { months, week_names, list_tasks } from "./App";
 
 export function Year(props) {
 
+    let current = props.current;
+
     function days_list(ind) {
         const list = [];
 
-        let dayStart = new Date(props.current.year, ind, 1).getDay();
-        let dayCount = new Date(props.current.year, ind + 1, 0).getDate();
+        let dayStart = new Date(current.getFullYear(), ind, 1).getDay();
+        let dayCount = new Date(current.getFullYear(), ind + 1, 0).getDate();
 
         //adicionando espacos vazios
         for (let i = 0; i < dayStart; ++i)
@@ -17,7 +19,7 @@ export function Year(props) {
 
             let isTask = false;
             list_tasks.map((val) => {
-                if (val.year == props.current.year && val.month == ind && val.day == i) {
+                if (val.year == current.getFullYear() && val.month == ind && val.day == i) {
                     isTask = true;
                 }
             })
@@ -30,15 +32,13 @@ export function Year(props) {
     }
 
     function click_month(ind, day) {
-        props.current.month = ind;
+        current.setMonth(ind);
         if (day) {
-            props.current.day = day;
+            current.setDate(day);
             props.setType('day');
         } else props.setType('month');
-
         props.animation(true);
     }
-
 
     return (
         <div className="box-year">
@@ -47,13 +47,11 @@ export function Year(props) {
                     return (
                         <div className="box">
                             <h2 onClick={a => { click_month(ind) }}>{val}</h2>
-
                             <div className="box-title">
                                 {week_names.map((i) => {
                                     return (<span>{i}</span>)
                                 })}
                             </div>
-
                             <div className="box-content">
                                 {days_list(ind)
                                 }
