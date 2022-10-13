@@ -1,4 +1,4 @@
-import { months, week_names, list_tasks } from "./App";
+import { months, week_names} from "./App";
 
 export function Year(props) {
 
@@ -18,7 +18,7 @@ export function Year(props) {
         for (let i = 1; i <= dayCount; ++i) {
 
             let isTask = false;
-            list_tasks.map((val) => {
+            props.tasks.map((val) => {
                 if (val.year == current.getFullYear() && val.month == ind && val.day == i) {
                     isTask = true;
                 }

@@ -1,11 +1,13 @@
-import {list_tasks, remove_task, tasks_change } from "./App";
+import { useState } from "react";
+import { list_tasks, remove_task, tasks_change } from "./App";
 
 export function Modal(props) {
 
     let data = props.data;
 
     function close() {
-        props.open(false);
+        props.close();
+        document.documentElement.style.overflow = 'overlay';
     }
 
     function submit() {
@@ -21,7 +23,7 @@ export function Modal(props) {
         else if (time == '') erro.innerText = 'Digite uma hora válida!';
         else {
             let arr = date.split('-');
-            props.sucess({
+            if (data.sucess) data.sucess({
                 id: new Date().getTime(),
                 name: name,
                 description: desc,
@@ -32,60 +34,60 @@ export function Modal(props) {
             })
             close();
         }
-
     }
 
-    function remove(){
-        list_tasks.map((e, i) => {
-            if(e.id == props.data.id) remove_task(i);
-        })
-
-        tasks_change();
-        close();
-    }
+    document.documentElement.style.overflow = 'hidden';
 
     return (
         <div className='modal'>
+
             <div onClick={close} className='modal-container'></div>
 
 
             <div className='modal-content'>
-                <span className='modal-title'>{props.title}</span>
+                <span className='modal-title'>{(data.title) ? data.title : 'Modal'}</span>
                 <span onClick={close} className='modal-close'><i class="bi bi-x"></i></span>
 
-                {(props.type != 'remove') ?
-                    <div>
-                        <label>Nome:
-                            <input placeholder='Digite o nome da tarefa...' type='text' maxLength='30' />
-                        </label>
-                        <label>Descrição:
-                            <textarea placeholder='Digite a descrição da tarefa...' maxLength='110'>{(props.data != null) ? props.data.description : ''}</textarea>
-                        </label>
-
-                        <div className='modal-infos'>
-                            <label for='moda-date'>Data:</label>
-                            <span className='modal-erro'></span>
-                            <label for='modal-time'>Horas:</label>
-                        </div>
-
-                        <div className='modal-date'>
-                            <input value='2022-10-09' contenteditable='true' id='moda-date' type='date' />
-                            <input id="modal-time" type='time' />
-                        </div>
-                        <button onClick={e => submit()}>Salvar</button>
-                    </div>
-
-                    :
+                {(data.type == 'remove') ?
                     <div>
                         <span className="modal-name">{props.data.name}</span>
                         <span className="modal-desc">{props.data.description}</span>
                         <button onClick={close} className="btn-remove" style={{ background: 'green' }}>Não</button>
-                        <button onClick={remove} className="btn-remove" style={{ background: 'red' }}>Sim</button>
+                        <button onClick={() => {data.sucess(); close()}} className="btn-remove" style={{ background: 'red' }}>Sim</button>
                     </div>
+
+                    : (data.type == 'list-task') ?
+                        <div>
+                            {data.values.map(e => {
+                                return (<div style={{ borderBottom: '2px solid cyan', padding: '5px 10px' }} class="task-content">
+                                    <span className="task-name">{e.name}</span>
+                                    <span classNam="task-description">{e.description}</span>
+                                </div>)
+                            })
+                            }
+                        </div>
+                        :
+                        <div>
+                            <label>Nome:
+                                <input defaultValue={(data.name) ? data.name : ''} placeholder='Digite o nome da tarefa...' type='text' maxLength='30' />
+                            </label>
+                            <label>Descrição:
+                                <textarea placeholder='Digite a descrição da tarefa...' maxLength='110'>{(data.description) ? data.description : ''}</textarea>
+                            </label>
+
+                            <div className='modal-infos'>
+                                <label for='moda-date'>Data:</label>
+                                <span className='modal-erro'></span>
+                                <label for='modal-time'>Horas:</label>
+                            </div>
+
+                            <div className='modal-date'>
+                                <input defaultValue={(data.date) ? data.date : ''} contenteditable='true' id='moda-date' type='date' />
+                                <input defaultValue={(data.time) ? data.time : ''} id="modal-time" type='time' />
+                            </div>
+                            <button onClick={e => submit()}>Salvar</button>
+                        </div>
                 }
-
-
-
             </div>
 
 

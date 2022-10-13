@@ -766,3 +766,36 @@ button.btn-remove{
   width: 46%;
   border: 2px solid cyan;
 }
+
+@media only screen and (max-width: 800px) {
+
+  .box-year{
+    grid-template-columns: auto auto;
+  }
+}
+
+@media only screen and (max-width: 900px) {
+.month-day{
+  padding: 0;
+}
+
+}
+
+@media only screen and (max-width: 600px) {
+
+  .month-day{
+    flex-direction: row;
+  }
+  
+}
+
+@media only screen and (max-width: 500px) {
+
+  .box-year{
+    grid-template-columns: auto;
+  }
+
+ 
+
+
+}

@@ -1,12 +1,4 @@
-import { useState } from "react";
-import {list_tasks, tasks_change } from "./App";
-import { Modal } from "./Modal";
-
 export function Week(props) {
-
-    let [isModal, setIsmodal] = useState(false);
-    let [title, setTitle] = useState('');
-    let [modalData, setModalData] = useState(null);
 
     let current = props.current;
 
@@ -46,15 +38,15 @@ export function Week(props) {
         week_days[week_ind].map((val) => {
             let c = 0;
 
-            list_tasks.map((e) => {
-                if(e.year == current.getFullYear() && e.month == val.month && e.day == val.day && e.hour == i)c += 1;
+            props.tasks.map((e) => {
+                if (e.year == current.getFullYear() && e.month == val.month && e.day == val.day && e.hour == i) c += 1;
             });
 
             coutTask.push(<span>
-                {(c == 0) ? <span className="not">-</span>:
-                 (c == 1) ? '01 tarefa' : 
-                 (c < 10) ? ('0' + c + ' tarefas') : (c + ' tarefas')}
-                <span onClick={e => {add(val, i)}} className="add">+</span>
+                {(c == 0) ? <span className="not">-</span> :
+                    (c == 1) ? '01 tarefa' :
+                        (c < 10) ? ('0' + c + ' tarefas') : (c + ' tarefas')}
+                <span hour={i} onClick={e => { add(val, e.target.attributes.hour.value) }} className="add">+</span>
             </span>);
         })
     }
@@ -66,21 +58,25 @@ export function Week(props) {
         props.animation(true);
     }
 
-    function add(val, i){
-        setIsmodal(true);
-        setTitle('Nova Tarefa');
-        //val.hour = i;
-        //setModalData(val);
-    }
+    function add(val, i) {
 
-    function sucess(data){
-        list_tasks.push(data);
-        tasks_change();
+        let month = val.month + 1;
+        if(month < 10)month = "0" + month
+
+        props.setModal({
+            title: 'Nova Tarefa',
+            date: current.getFullYear() + '-' + month + '-' + (((val.day < 10) ? '0' : '') + val.day),
+            time: ((i < 10) ? ('0' + i) : i) + ':00',
+            sucess: (base) => {
+                props.tasks.push(base);
+                props.animation(true);
+            }
+        });
     }
 
     document.addEventListener('scroll', (e) => {
         let list = document.querySelector('.week-list');
-        if(list == null) return;
+        if (list == null) return;
         else if (window.scrollY > 155) list.classList.add('fixe');
         else list.classList.remove('fixe');
     })
@@ -102,10 +98,6 @@ export function Week(props) {
                     {coutTask}
                 </div>
             </div>
-
-            {(isModal) ? <Modal animation={props.animation} data={modalData} sucess={sucess} title={title} open={setIsmodal}/> : ''}
-            {(document.documentElement.style.overflow = (isModal) ?  'hidden' : 'overlay') ? '' : ''}
-
         </div>
     )
 }

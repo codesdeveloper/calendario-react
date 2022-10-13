@@ -1,4 +1,4 @@
-import { week_names, list_tasks } from "./App";
+import { week_names} from "./App";
 
 export function Month(props) {
 
@@ -13,7 +13,7 @@ export function Month(props) {
     let dayCount = new Date(current.getFullYear(), current.getMonth() + 1, 0).getDate();
 
     //checando se há tarefas nos dias
-    list_tasks.map((val) => {
+    props.tasks.map((val) => {
         if (val.year == current.getFullYear() && val.month == current.getMonth()) {
             coutTask[val.day - 1] += 1;
         }
