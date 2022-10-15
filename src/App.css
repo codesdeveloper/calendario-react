@@ -31,10 +31,7 @@ header {
   align-items: center;
   color: white;
   text-align: center;
-}
-
-header .box-type {
-  margin-left: 20px;
+  padding: 0 30px;
 }
 
 .box-type select {
@@ -52,8 +49,8 @@ header .box-type {
 }
 
 .box-type select:hover,
-.box-type select:focus{
-  border:2px solid cyan;
+.box-type select:focus {
+  border: 2px solid cyan;
 }
 
 .box-type select option {
@@ -70,7 +67,6 @@ header .box-type {
 }
 
 header .logo {
-  margin-right: 20px;
   height: 80%;
   padding: 5px;
 }
@@ -107,12 +103,13 @@ header .logo img {
 .alter select {
   color: #0f0;
   background: black;
-  padding: 6px 33px;
+  padding: 3px 33px;
   border-radius: 7px;
   border: 2px solid white;
   outline: none;
   cursor: pointer;
   z-index: 1;
+  font-size: 20px;
 }
 
 .alter select:hover {
@@ -217,6 +214,7 @@ header .logo img {
 
 .day-hour {
   color: #f00;
+  font-size: 20px;
 }
 
 .day-content .hour-not-taref {
@@ -231,7 +229,7 @@ header .logo img {
   padding: 3px 6px;
   cursor: pointer;
   color: #0f0;
-  font-size: 17px;
+  font-size: 20px;
   display: block;
   text-align: center;
   width: 150px;
@@ -527,6 +525,10 @@ footer {
   outline: none;
 }
 
+.task-search button.b-hide {
+  display: none;
+}
+
 .task-search button:hover {
   border: 2px solid cyan;
   color: cyan;
@@ -556,6 +558,10 @@ footer {
 }
 
 .task-left {
+  display: flex;
+}
+
+.task-actions{
   display: flex;
 }
 
@@ -612,7 +618,7 @@ footer {
   color: #f00;
 }
 
-.modal{
+.modal {
   position: fixed;
   top: 0;
   left: 0;
@@ -624,7 +630,7 @@ footer {
   z-index: 3;
 }
 
-.modal-container{
+.modal-container {
   background: rgba(44, 44, 44, 0.8);
   z-index: 2;
   width: 100%;
@@ -632,18 +638,19 @@ footer {
   position: absolute;
 }
 
-.modal-content{
-  color:#fff;
+.modal-content {
+  color: #fff;
   z-index: 3;
   background: #000;
   border-radius: 10px;
   box-shadow: 0 0 5px #fff;
   padding: 10px;
-  width: 400px;
+  max-width: 500px;
+  width: 80%;
   position: relative;
 }
 
-.modal-title{
+.modal-title {
   font-weight: bold;
   font-size: 25px;
   color: #fff;
@@ -654,27 +661,27 @@ footer {
   margin-bottom: 10px;
 }
 
-.modal-close{
+.modal-close {
   position: absolute;
   right: -3px;
   top: -8px;
   cursor: pointer;
 }
 
-.modal-close:hover{
+.modal-close:hover {
   color: red;
 }
 
-.modal-close i{
+.modal-close i {
   font-size: 25px;
 }
 
-.modal-content label{
+.modal-content label {
   font-size: 19px;
 }
 
 .modal-content input[type=text],
-.modal-content textarea{
+.modal-content textarea {
   display: block;
   width: 100%;
   padding: 7px;
@@ -682,120 +689,345 @@ footer {
   outline: 0;
   border: 2px solid #0f0;
   margin-top: 5px;
-  font-size: 15px;
+  font-size: medium;
   font-weight: bold;
   background: #f8f8ff;
   margin-bottom: 10px;
 }
 
 .modal-content input[type=text]::placeholder,
-.modal-content textarea::placeholder{
+.modal-content textarea::placeholder {
   color: #3f3f3f;
 }
 
-.modal-content textarea{
+.modal-content textarea {
   resize: none;
   height: 95px;
 }
 
-.modal-infos{
+.modal-infos {
   display: flex;
   justify-content: space-around;
   margin-bottom: 10px;
 }
 
-.modal-erro{
+.modal-erro {
   color: #f00;
   font-style: italic;
   padding: 2px;
 }
 
-.modal-date{
+.modal-date {
   display: flex;
   justify-content: space-around;
 }
 
 .modal-content input[type=date],
 .modal-content input[type=time],
-.modal-content button{
+.modal-content button {
   width: 45%;
   padding: 5px;
   border-radius: 5px;
   outline: 0;
   border: 2px solid #0f0;
-  font-size: 15px;
   font-weight: bold;
   background: #f8f8ff;
-  text-align: center;  
+  text-align: center;
   cursor: pointer;
   color: #3f3f3f;
 }
 
-.modal-content button{
-  margin:15px 2% 0 2%;
+.modal-content button {
+  margin: 15px 2% 0 2%;
   width: 96%;
 }
 
 .modal-content input:hover,
 .modal-content textarea:hover,
-.modal-content button:hover{
+.modal-content button:hover {
   border: 2px solid cyan;
   color: cyan;
 }
 
 .modal-content textarea:hover::placeholder,
-.modal-content input:hover::placeholder{
+.modal-content input:hover::placeholder {
   color: cyan;
 }
 
-.modal-name{
+.modal-name {
   font-weight: bold;
   display: block;
   font-size: 20px;
   margin-bottom: 10px;
 }
 
-.modal-desc{
+.modal-desc {
   display: block;
   padding: 0 15px;
   font-style: italic;
   margin-bottom: 10px;
 }
 
-button.btn-remove{
+button.btn-remove {
   width: 46%;
   border: 2px solid cyan;
 }
 
 @media only screen and (max-width: 800px) {
 
-  .box-year{
+  header .logo {
+    height: 60%;
+  }
+
+  header .title h2 {
+    font-size: 25px;
+  }
+
+  .box-type select {
+    padding: 0;
+  }
+
+  .alter select {
+    padding: 1.5px 12px;
+    font-size: medium;
+  }
+
+  .alter .title-year,
+  .alter .title-month {
+    padding: 0 12px;
+    font-size: medium;
+  }
+
+  .alter span {
+    font-size: medium;
+  }
+
+  .box-year {
     grid-template-columns: auto auto;
   }
-}
 
-@media only screen and (max-width: 900px) {
-.month-day{
-  padding: 0;
-}
+  .month-day {
+    padding: 0;
+  }
+
+  .day-taref {
+    font-size: 10px;
+    background: #0f0;
+    width: 10px;
+    height: 10px;
+    overflow: hidden;
+  }
+
+  .day-hour {
+    font-size: medium;
+  }
+
+  .day-content .hour-is-taref {
+    font-size: medium;
+  }
+
+  .day-content .add {
+    font-size: medium;
+    width: 50px;
+    height: 25px;
+  }
+
+  .task-search select,
+  .task-search input,
+  .task-search button {
+    padding: 7px 8px;
+    font-size: 9px;
+  }
+
+  footer span {
+    font-size: medium;
+  }
+
+  .modal-title,
+  .modal-content label,
+  .modal-content input,
+  .modal-content textarea,
+  .modal-content button {
+    font-size: medium;
+  }
+
+  .modal-name {
+    font-size: medium;
+  }
+
+  .modal-desc {
+    font-size: small;
+  }
+
+  .modal-content button {
+    font-size: small;
+  }
+
+  .animation .rotate {
+    width: 70px;
+    height: 70px;
+    border: 12px dotted cyan;
+  }
+
+  .task-month-title,
+  .task-hour,
+  .task-description {
+    font-size: x-small;
+  }
+
+  .task-day,
+  .task-name {
+    font-size: medium;
+  }
+
+  .task-actions i{
+    font-size: 25px;
+  }
 
 }
 
 @media only screen and (max-width: 600px) {
 
-  .month-day{
-    flex-direction: row;
+  .task-search {
+    display: block;
   }
-  
+
+  .task-search select {
+    width: 48%;
+    margin-right: 4%;
+    display: inline;
+  }
+
+  .task-search button {
+    display: none;
+  }
+
+  .task-search button.b-hide {
+    display: inline;
+    width: 48%;
+  }
+
+  .task-search input {
+    margin-top: 10px;
+    width: 100%;
+  }
+
 }
 
 @media only screen and (max-width: 500px) {
 
-  .box-year{
+  header {
+    padding: 8px;
+  }
+
+  header .title {
+    margin-right: 30px;
+  }
+
+  .alter {
+    padding: 5px;
+  }
+
+  .alter select {
+    padding: 1.5px 8px;
+    font-size: small;
+  }
+
+  .alter .title-year,
+  .alter .title-month {
+    padding: 0 9px;
+    font-size: small;
+  }
+
+  .box-year {
     grid-template-columns: auto;
   }
 
- 
+  .month-day {
+    flex-direction: row;
+  }
 
+  .month-day .day-num {
+    font-size: 8px;
+  }
+
+  .box-week .week-hour span {
+    font-size: 10px;
+  }
+
+  .box-week .week-content>span .is {
+    background: #0f0;
+    width: 10px;
+    height: 10px;
+    overflow: hidden;
+    border-radius: 10px;
+  }
+
+  .week-list {
+    padding-left: 45px;
+  }
+
+  .day-hour {
+    font-size: small;
+  }
+
+  .day-content .hour-is-taref {
+    font-size: small;
+  }
+
+  .day-content .add {
+    font-size: small;
+    width: 40px;
+    height: 20px;
+  }
+
+  footer span {
+    font-size: small;
+  }
+
+  .modal-content {
+    width: 90%;
+  }
+
+  .modal-title,
+  .modal-content label,
+  .modal-content input,
+  .modal-content textarea,
+  .modal-content button {
+    font-size: small;
+  }
+
+  .modal-name {
+    font-size: small;
+  }
+
+  .modal-desc {
+    font-size: x-small;
+  }
+
+  .modal-content button {
+    font-size: x-small;
+  }
+
+  .animation .rotate {
+    width: 40px;
+    height: 40px;
+    border: 8px dotted cyan;
+  }
+
+  .task-month-title,
+  .task-hour,
+  .task-description {
+    font-size: xx-small;
+  }
+
+  .task-day,
+  .task-name {
+    font-size: small;
+  }
+
+  .task-actions i{
+    font-size: 20px;
+  }
 
 }

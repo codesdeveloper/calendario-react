@@ -60,8 +60,8 @@ export function Modal(props) {
                         <div>
                             {data.values.map(e => {
                                 return (<div style={{ borderBottom: '2px solid cyan', padding: '5px 10px' }} class="task-content">
-                                    <span className="task-name">{e.name}</span>
-                                    <span classNam="task-description">{e.description}</span>
+                                    <span className="modal-name">{e.name}</span>
+                                    <span className="modal-desc">{e.description}</span>
                                 </div>)
                             })
                             }

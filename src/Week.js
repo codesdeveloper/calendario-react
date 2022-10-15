@@ -44,8 +44,8 @@ export function Week(props) {
 
             coutTask.push(<span>
                 {(c == 0) ? <span className="not">-</span> :
-                    (c == 1) ? '01 tarefa' :
-                        (c < 10) ? ('0' + c + ' tarefas') : (c + ' tarefas')}
+                    (c == 1) ? <span className="is">01 tarefa</span> :
+                        (c < 10) ? <span className="is">{('0' + c + ' tarefas')}</span> : <span className="is">{(c + ' tarefas')} </span>}
                 <span hour={i} onClick={e => { add(val, e.target.attributes.hour.value) }} className="add">+</span>
             </span>);
         })
@@ -61,7 +61,7 @@ export function Week(props) {
     function add(val, i) {
 
         let month = val.month + 1;
-        if(month < 10)month = "0" + month
+        if (month < 10) month = "0" + month
 
         props.setModal({
             title: 'Nova Tarefa',

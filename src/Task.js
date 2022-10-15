@@ -4,7 +4,7 @@ import { months } from "./App";
 export function Task(props) {
 
     let [search, setSearch] = useState('');
-    let [filter, setFilter] = useState(0);
+    let [filter, setFilter] = useState(-1);
 
     let list_months = [];
     let box_month = null;
@@ -93,6 +93,7 @@ export function Task(props) {
                     })
                    }
                 </select>
+                <button className="b-hide" onClick={e => add()}>Adicionar</button>
                 <input onChange={change} placeholder="Digite o nome ou descrição da tarefa..." type='search' />
                 <button onClick={e => add()}>Adicionar</button>
             </div>
