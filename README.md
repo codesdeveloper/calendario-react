@@ -23,9 +23,6 @@
 
 <br/>
 
-* Veja o video de como usar a aplicação:
-https://leandros8w.github.io/projeto-calendario-react/prints/video-demostrativo.mp4
-
 * Url da página para acesso:
 https://leandros8w.github.io/projeto-calendario-react/
 
