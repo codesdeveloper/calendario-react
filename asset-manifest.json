@@ -1,0 +1,14 @@
+{
+  "files": {
+    "main.css": "/projeto-calendario-react/npm%20install%20--save%20gh-pages/static/css/main.fdaaad53.css",
+    "main.js": "/projeto-calendario-react/npm%20install%20--save%20gh-pages/static/js/main.2b29084a.js",
+    "static/media/logo.png": "/projeto-calendario-react/npm%20install%20--save%20gh-pages/static/media/logo.068e8fdfdc7d33031209.png",
+    "index.html": "/projeto-calendario-react/npm%20install%20--save%20gh-pages/index.html",
+    "main.fdaaad53.css.map": "/projeto-calendario-react/npm%20install%20--save%20gh-pages/static/css/main.fdaaad53.css.map",
+    "main.2b29084a.js.map": "/projeto-calendario-react/npm%20install%20--save%20gh-pages/static/js/main.2b29084a.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.fdaaad53.css",
+    "static/js/main.2b29084a.js"
+  ]
+}
